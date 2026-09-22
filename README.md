@@ -1,34 +1,44 @@
-# LLM Usage Collector 使用手册
+# 📊 LLM Usage Collector
 
-## 简介
+> 🧮 **把散落在 9 个 AI Agent 里的 Token 账单，收成一张终端仪表盘**
 
-LLM Usage Collector 是一款本地 AI Agent 用量聚合工具，自动扫描本机所有 AI 编程助手的 Token 调用数据，生成统一的终端报表。
-
-**支持的 Agent**：
-
-| Agent | 数据格式 | 存储位置 |
-|-------|---------|---------|
-| Claude Code | JSONL | `~/.claude/projects/**/*.jsonl` |
-| Pi Agent | JSONL | `~/.pi/agent/sessions/**/*.jsonl` |
-| Hermes 桌面版 | SQLite | `%LOCALAPPDATA%\Hermes Agent CN Desktop\data\hermes-home\state.db` |
-| Hermes 终端版 | SQLite | `%LOCALAPPDATA%\hermes\state.db` |
-| OpenCode | SQLite | `~/.local/share/opencode/opencode.db` |
-| ZCode（智谱） | SQLite | `~/.zcode/cli/db/db.sqlite` |
-| Codex | JSONL | `~/.codex/sessions/**/rollout-*.jsonl` |
-| MiMo Desktop | SQLite | `~/.local/share/mimocode/mimocode.db` |
-| DSH（DeepSeek Harness） | JSON (+zstd 会话日志) | `~/.dsh/storages/session_projcache.json`、`~/.dsh/sessions/**/session.jsonl.zstd` |
-| Copilot CLI | JSONL | `~/.copilot/session-state/**/events.jsonl` |
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![rich](https://img.shields.io/badge/UI-rich-8A2BE2)](https://github.com/Textualize/rich)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](.)
+[![Agents](https://img.shields.io/badge/agents-9%20covered-orange)](#-支持的-agent)
 
 ---
 
-## 安装
+## ✨ 简介
 
-### 前置条件
+LLM Usage Collector 是一款本地 AI Agent 用量聚合工具，自动扫描本机所有 AI 编程助手的 Token 调用数据，生成统一的终端报表。
 
-- Python 3.10+
-- rich 库
+**支持的 Agent** 🤖
 
-### 安装步骤
+| Agent | 数据格式 | 存储位置 |
+|-------|---------|---------|
+| 🟠 Claude Code | JSONL | `~/.claude/projects/**/*.jsonl` |
+| 🟣 Pi Agent | JSONL | `~/.pi/agent/sessions/**/*.jsonl` |
+| 🔵 Hermes 桌面版 | SQLite | `%LOCALAPPDATA%\Hermes Agent CN Desktop\data\hermes-home\state.db` |
+| 🩵 Hermes 终端版 | SQLite | `%LOCALAPPDATA%\hermes\state.db` |
+| 🟢 OpenCode | SQLite | `~/.local/share/opencode/opencode.db` |
+| 🟡 ZCode（智谱） | SQLite | `~/.zcode/cli/db/db.sqlite` |
+| ⚫ Codex | JSONL | `~/.codex/sessions/**/rollout-*.jsonl` |
+| 🔴 MiMo Desktop | SQLite | `~/.local/share/mimocode/mimocode.db` |
+| 🐳 DSH（DeepSeek Harness） | JSON (+zstd 会话日志) | `~/.dsh/storages/session_projcache.json`、`~/.dsh/sessions/**/session.jsonl.zstd` |
+| 🟦 Copilot CLI | JSONL | `~/.copilot/session-state/**/events.jsonl` |
+
+---
+
+## 🚀 安装
+
+### 📦 前置条件
+
+- 🐍 Python 3.10+
+- 🎨 rich 库
+
+### 🛠️ 安装步骤
 
 ```bash
 cd LLM-Usage-Collector
@@ -39,9 +49,9 @@ pip install -r requirements.txt
 
 ---
 
-## 使用方法
+## 🎮 使用方法
 
-### 基本用法
+### 🏁 基本用法
 
 ```bash
 python main.py
@@ -49,7 +59,7 @@ python main.py
 
 运行后自动扫描所有 Agent，输出终端报表。
 
-### 命令行参数
+### ⌨️ 命令行参数
 
 | 参数 | 说明 | 示例 |
 |------|------|------|
@@ -57,7 +67,7 @@ python main.py
 | `--agent <名称>` | 按 Agent 名称过滤 | `python main.py --agent claude` |
 | `--days <天数>` | 指定每日趋势的天数（默认 30） | `python main.py --days 7` |
 
-### 过滤示例
+### 🔍 过滤示例
 
 ```bash
 # 只看 Claude Code
@@ -78,9 +88,9 @@ python main.py --json > usage_report.json
 
 ---
 
-## 报表说明
+## 📈 报表说明
 
-### 总览卡片
+### 🗂️ 总览卡片
 
 ```
 ┌─────────────────┐  ┌─────────────────┐
@@ -95,51 +105,51 @@ python main.py --json > usage_report.json
 
 | 卡片 | 含义 |
 |------|------|
-| Total Tokens | 所有 Agent 的 Token 总量（含 Cache） |
-| Input / Output | 新输入 / 模型输出 |
-| Cache R / W | 缓存读取 / 缓存写入 |
-| Total Cost | 估算总费用（美元） |
-| Requests | 总请求次数 |
-| Sessions | 总会话数 |
-| Agents | Agent 数量 |
-| Time Span | 数据时间跨度 |
+| 🧮 Total Tokens | 所有 Agent 的 Token 总量（含 Cache） |
+| 📥📤 Input / Output | 新输入 / 模型输出 |
+| 📦 Cache R / W | 缓存读取 / 缓存写入 |
+| 💵 Total Cost | 估算总费用（美元） |
+| 🔁 Requests | 总请求次数 |
+| 💬 Sessions | 总会话数 |
+| 🤖 Agents | Agent 数量 |
+| ⏳ Time Span | 数据时间跨度 |
 
-### By Agent 表格
+### 🤖 By Agent 表格
 
 按 Agent 汇总的 Token 用量、费用、请求数。Hermes 分为 Desktop 和 Terminal 两行。
 
-### By Model 表格
+### 🧠 By Model 表格
 
 按模型名称汇总的 Top 15，包含 Token 用量、费用、请求数。
 
-### Daily Trend
+### 📅 Daily Trend
 
 最近 N 天（默认 14 天）的每日用量柱状图，包含 Token 量、费用、请求数。
 
 ---
 
-## 费用说明
+## 💰 费用说明
 
 | Agent | 费用数据来源 | 说明 |
 |-------|------------|------|
-| Pi Agent | 本地 `cost.total` | Pi 自带计费，精确 |
-| OpenCode | 本地 `session.cost` | OpenCode 自带计费 |
-| Hermes | `estimated_cost_usd` | Hermes 估算，部分为 0（免费套餐） |
-| Claude Code | 无 | 通过中转站调用，无本地费用记录 |
-| ZCode | 无 | 智谱 CodingPlan 免费额度内 |
-| Codex | 无 | 本地无费用记录，显示 `-` |
-| DSH | 无 | DeepSeek 官方额度，本地不记费用 |
-| Copilot CLI | 无 | 订阅额度（premium requests），本地不记美元费用 |
+| 🟣 Pi Agent | 本地 `cost.total` | Pi 自带计费，精确 |
+| 🟢 OpenCode | 本地 `session.cost` | OpenCode 自带计费 |
+| 🔵 Hermes | `estimated_cost_usd` | Hermes 估算，部分为 0（免费套餐） |
+| 🟠 Claude Code | 无 | 通过中转站调用，无本地费用记录 |
+| 🟡 ZCode | 无 | 智谱 CodingPlan 免费额度内 |
+| ⚫ Codex | 无 | 本地无费用记录，显示 `-` |
+| 🐳 DSH | 无 | DeepSeek 官方额度，本地不记费用 |
+| 🟦 Copilot CLI | 无 | 订阅额度（premium requests），本地不记美元费用 |
 
 费用显示 `-` 表示该 Agent 无本地计费数据。
 
 ---
 
-## 在 Agent 中调用
+## 🗣️ 在 Agent 中调用
 
 本机 Agent 已通过 skill `llm-usage` / AGENTS.md / 记忆桥接统一接入。
 
-### Claude Code
+### 🟠 Claude Code
 
 ```
 /usage
@@ -147,21 +157,21 @@ python main.py --json > usage_report.json
 
 或说：「查看用量统计」
 
-### OpenCode
+### 🟢 OpenCode
 
 说：「查看用量统计」「usage」「token 用量」
 
-### Hermes
+### 🔵 Hermes
 
 说：「查看各 Agent 模型调用用量」
 
-### Codex / ZCode / MiMo / DSH / Copilot
+### ⚫ Codex / 🟡 ZCode / 🔴 MiMo / 🐳 DSH / 🟦 Copilot
 
 说：「查看用量统计」，Agent 按全局指令执行 `main.py`。
 
 ---
 
-## JSON 输出格式
+## 🧾 JSON 输出格式
 
 ```json
 {
@@ -190,18 +200,18 @@ python main.py --json > usage_report.json
 
 ---
 
-## 数据保留说明
+## 🗄️ 数据保留说明
 
 | Agent | 默认保留策略 | 影响 |
 |-------|------------|------|
-| Claude Code | **30 天后删除** session 文件 | 历史数据可能不完整 |
-| Pi Agent | 永久保留 | 完整 |
-| Hermes | 永久保留（SQLite） | 完整 |
-| OpenCode | 永久保留（SQLite） | 完整 |
-| ZCode | 永久保留（SQLite） | 完整 |
-| Codex | 永久保留（JSONL） | 完整 |
-| DSH | 永久保留（projcache + 会话日志） | 完整 |
-| Copilot CLI | 永久保留（events.jsonl，仅含已 shutdown 的会话汇总） | 完整 |
+| 🟠 Claude Code | **30 天后删除** session 文件 | 历史数据可能不完整 |
+| 🟣 Pi Agent | 永久保留 | 完整 |
+| 🔵 Hermes | 永久保留（SQLite） | 完整 |
+| 🟢 OpenCode | 永久保留（SQLite） | 完整 |
+| 🟡 ZCode | 永久保留（SQLite） | 完整 |
+| ⚫ Codex | 永久保留（JSONL） | 完整 |
+| 🐳 DSH | 永久保留（projcache + 会话日志） | 完整 |
+| 🟦 Copilot CLI | 永久保留（events.jsonl，仅含已 shutdown 的会话汇总） | 完整 |
 
 **建议**：如需保留 Claude Code 历史，在 `~/.claude/settings.json` 中设置：
 
@@ -213,7 +223,7 @@ python main.py --json > usage_report.json
 
 ---
 
-## 常见问题
+## ❓ 常见问题
 
 ### Q: 报错 `No usage data found`
 
@@ -244,36 +254,36 @@ schtasks /create /tn "LLM-Usage-Daily" /tr "%CD%\daily-report.cmd" /sc daily /st
 
 ---
 
-## 项目结构
+## 🗂️ 项目结构
 
 ```
 LLM-Usage-Collector/
-├── main.py              # 入口
-├── usage.cmd            # Windows 一键启动
-├── usage.ps1            # PowerShell 启动
-├── daily-report.cmd     # 每日 JSON 报表入口
-├── daily-report.ps1     # 每日 JSON 报表脚本
-├── reports/             # 定时报表输出
-├── requirements.txt     # 依赖（rich）
+├── 🚪 main.py           # 入口
+├── 🪟 usage.cmd         # Windows 一键启动
+├── 💻 usage.ps1         # PowerShell 启动
+├── 🌙 daily-report.cmd  # 每日 JSON 报表入口
+├── 🌙 daily-report.ps1  # 每日 JSON 报表脚本
+├── 📁 reports/          # 定时报表输出
+├── 📋 requirements.txt  # 依赖（rich）
 ├── collectors/
-│   ├── __init__.py
-│   ├── base.py          # 统一数据模型 UsageRecord
-│   ├── claude.py        # Claude Code 采集器
-│   ├── pi.py            # Pi Agent 采集器
-│   ├── hermes.py        # Hermes 采集器（桌面+终端）
-│   ├── opencode.py      # OpenCode 采集器
-│   ├── zcode.py         # ZCode（智谱）采集器
-│   ├── codex.py         # Codex 采集器
-│   ├── mimo.py          # MiMo Desktop 采集器
-│   ├── dsh.py           # DSH（DeepSeek Harness）采集器
-│   └── copilot.py       # GitHub Copilot CLI 采集器
-├── aggregator.py        # 聚合引擎
-└── display.py           # Rich 终端报表
+│   ├── 📦 __init__.py
+│   ├── 🧱 base.py       # 统一数据模型 UsageRecord
+│   ├── 🟠 claude.py     # Claude Code 采集器
+│   ├── 🟣 pi.py         # Pi Agent 采集器
+│   ├── 🔵 hermes.py     # Hermes 采集器（桌面+终端）
+│   ├── 🟢 opencode.py   # OpenCode 采集器
+│   ├── 🟡 zcode.py      # ZCode（智谱）采集器
+│   ├── ⚫ codex.py      # Codex 采集器
+│   ├── 🔴 mimo.py       # MiMo Desktop 采集器
+│   ├── 🐳 dsh.py        # DSH（DeepSeek Harness）采集器
+│   └── 🟦 copilot.py    # GitHub Copilot CLI 采集器
+├── 🧩 aggregator.py     # 聚合引擎
+└── 🎨 display.py        # Rich 终端报表
 ```
 
 ---
 
-## 扩展新 Agent
+## 🧩 扩展新 Agent
 
 在 `collectors/` 下新建文件，继承 `UsageRecord` 数据模型，实现 `collect()` 方法返回 `List[UsageRecord]`：
 
@@ -297,3 +307,9 @@ class NewAgentCollector:
 ```
 
 然后在 `collectors/__init__.py` 和 `main.py` 中注册即可。
+
+---
+
+## 📄 License
+
+[MIT](./LICENSE) © Dream22180971
