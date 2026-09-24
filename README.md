@@ -15,7 +15,7 @@
 
 ---
 
-## Why
+## 💡 Why
 
 If you use several AI coding agents, usage data quickly becomes fragmented across JSONL files, SQLite databases and tool-specific directories.
 
@@ -25,7 +25,7 @@ If you use several AI coding agents, usage data quickly becomes fragmented acros
 
 ---
 
-## Demo
+## 🎬 Demo
 
 ```text
 ┌──────────────────┐  ┌──────────────────┐
@@ -43,7 +43,7 @@ If you use several AI coding agents, usage data quickly becomes fragmented acros
 
 ---
 
-## Quick Start
+## ⚡ Quick Start
 
 ```bash
 git clone https://github.com/Dream22180971/LLM-Usage-Collector.git
@@ -66,7 +66,7 @@ python main.py --json > usage_report.json
 
 ---
 
-## Supported Agents
+## 🤖 Supported Agents
 
 | Agent | Source | Collected data |
 |---|---|---|
@@ -100,7 +100,7 @@ python main.py --json > usage_report.json
 
 ---
 
-## What you get
+## 📊 What you get
 
 | View | Purpose |
 |---|---|
@@ -128,7 +128,7 @@ Example JSON:
 
 ---
 
-## Architecture
+## 🧩 Architecture
 
 ```mermaid
 flowchart LR
@@ -149,7 +149,7 @@ Each collector converts a tool-specific local format into a shared `UsageRecord`
 
 ---
 
-## Add a new Agent
+## 🧱 Add a new Agent
 
 ```python
 from .base import UsageRecord
@@ -173,7 +173,7 @@ Then register the collector in the project entry points.
 
 ---
 
-## Privacy & Local-first
+## 🔐 Privacy & Local-first
 
 - Reads local agent data only.
 - No account system.
@@ -183,7 +183,7 @@ Then register the collector in the project entry points.
 
 ---
 
-## Project Structure
+## 🗂 Project Structure
 
 ```text
 LLM-Usage-Collector/
@@ -205,7 +205,7 @@ LLM-Usage-Collector/
 
 ---
 
-## Roadmap
+## 🗺 Roadmap
 
 - [x] Multi-agent local collectors
 - [x] Agent / model / daily aggregation
@@ -220,7 +220,7 @@ LLM-Usage-Collector/
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 PRs are especially useful for:
 
@@ -232,7 +232,7 @@ PRs are especially useful for:
 
 ---
 
-## License
+## 📄 License
 
 [MIT](./LICENSE)
 
