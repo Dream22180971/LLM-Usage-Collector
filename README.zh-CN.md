@@ -216,7 +216,7 @@ LLM-Usage-Collector/
 
 ---
 
-## License
+## 📄 License
 
 [MIT](./LICENSE)
 
