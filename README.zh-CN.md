@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&weight=700&size=30&duration=2200&pause=900&color=7C3AED&center=true&vCenter=true&width=900&lines=ONE+DASHBOARD+FOR+YOUR+AI+CODING+AGENTS;Claude+Code+%C2%B7+Codex+%C2%B7+OpenCode+%C2%B7+Copilot+%C2%B7+Qoder" alt="Typing SVG" />
-
 # LLM Usage Collector
 
 **一张本地仪表盘，汇总多个 AI Coding Agent 的 Token、模型、会话和费用。**
