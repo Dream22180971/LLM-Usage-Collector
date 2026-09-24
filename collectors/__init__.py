@@ -7,6 +7,8 @@ from .codex import CodexCollector
 from .mimo import MimoCollector
 from .dsh import DshCollector
 from .copilot import CopilotCollector
+from .omp import OmpCollector
+from .qoder import QoderCollector
 
 __all__ = [
     "ClaudeCollector",
@@ -18,4 +20,6 @@ __all__ = [
     "MimoCollector",
     "DshCollector",
     "CopilotCollector",
+    "OmpCollector",
+    "QoderCollector",
 ]

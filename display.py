@@ -39,7 +39,7 @@ def display(totals: dict, by_agent: Dict[str, AgentSummary], by_model: dict, by_
     header = Text()
     header.append("  LLM Usage Dashboard", style="bold white")
     header.append("  |  ", style="dim")
-    header.append("Claude Code + Pi + Hermes + OpenCode + ZCode + Codex + MiMo + DSH + Copilot", style="dim")
+    header.append(" + ".join(by_agent.keys()), style="dim")
     console.print(Panel(header, border_style="green", box=box.DOUBLE))
 
     # ── Overview Cards ──────────────────────────────────────

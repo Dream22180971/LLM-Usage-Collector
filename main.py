@@ -27,6 +27,8 @@ from collectors import (
     MimoCollector,
     DshCollector,
     CopilotCollector,
+    OmpCollector,
+    QoderCollector,
 )
 from aggregator import Aggregator
 from display import display, console
@@ -44,6 +46,8 @@ def collect_all(quiet: bool = False):
         MimoCollector(),
         DshCollector(),
         CopilotCollector(),
+        OmpCollector(),
+        QoderCollector(),
     ]
     all_records = []
     for c in collectors:

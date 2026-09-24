@@ -1,12 +1,12 @@
 # 📊 LLM Usage Collector
 
-> 🧮 **把散落在 9 个 AI Agent 里的 Token 账单，收成一张终端仪表盘**
+> 🧮 **把散落在 11 个 AI Agent 里的 Token 账单，收成一张终端仪表盘**
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![rich](https://img.shields.io/badge/UI-rich-8A2BE2)](https://github.com/Textualize/rich)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](.)
-[![Agents](https://img.shields.io/badge/agents-9%20covered-orange)](#-支持的-agent)
+[![Agents](https://img.shields.io/badge/agents-11%20covered-orange)](#-支持的-agent)
 
 ---
 
@@ -20,6 +20,8 @@ LLM Usage Collector 是一款本地 AI Agent 用量聚合工具，自动扫描�
 |-------|---------|---------|
 | 🟠 Claude Code | JSONL | `~/.claude/projects/**/*.jsonl` |
 | 🟣 Pi Agent | JSONL | `~/.pi/agent/sessions/**/*.jsonl` |
+| 🍍 Oh My Pi (omp) | JSONL | `~/.omp/agent/sessions/**/*.jsonl` |
+| 🔶 Qoder | JSONL | `~/.qoder-cn/projects/**/*.jsonl` |
 | 🔵 Hermes 桌面版 | SQLite | `%LOCALAPPDATA%\Hermes Agent CN Desktop\data\hermes-home\state.db` |
 | 🩵 Hermes 终端版 | SQLite | `%LOCALAPPDATA%\hermes\state.db` |
 | 🟢 OpenCode | SQLite | `~/.local/share/opencode/opencode.db` |
@@ -133,6 +135,8 @@ python main.py --json > usage_report.json
 | Agent | 费用数据来源 | 说明 |
 |-------|------------|------|
 | 🟣 Pi Agent | 本地 `cost.total` | Pi 自带计费，精确 |
+| 🍍 Oh My Pi (omp) | 本地 `usage.cost.total` | MiMo 端点 `models.yml` 配 `cost: 0`，记 0；自定义端点填了价格即可累计 |
+| 🔶 Qoder | 无 | 积分（credits）计费非美元；qfmodel 网关 token 常回传 0，Cost 显示 `-`，请求数正常 |
 | 🟢 OpenCode | 本地 `session.cost` | OpenCode 自带计费 |
 | 🔵 Hermes | `estimated_cost_usd` | Hermes 估算，部分为 0（免费套餐） |
 | 🟠 Claude Code | 无 | 通过中转站调用，无本地费用记录 |
@@ -165,7 +169,7 @@ python main.py --json > usage_report.json
 
 说：「查看各 Agent 模型调用用量」
 
-### ⚫ Codex / 🟡 ZCode / 🔴 MiMo / 🐳 DSH / 🟦 Copilot
+### ⚫ Codex / 🟡 ZCode / 🔴 MiMo / 🐳 DSH / 🟦 Copilot / 🍍 OMP / 🔶 Qoder
 
 说：「查看用量统计」，Agent 按全局指令执行 `main.py`。
 
@@ -206,6 +210,8 @@ python main.py --json > usage_report.json
 |-------|------------|------|
 | 🟠 Claude Code | **30 天后删除** session 文件 | 历史数据可能不完整 |
 | 🟣 Pi Agent | 永久保留 | 完整 |
+| 🍍 Oh My Pi (omp) | 永久保留（JSONL） | 完整 |
+| 🔶 Qoder | 永久保留（JSONL） | 完整 |
 | 🔵 Hermes | 永久保留（SQLite） | 完整 |
 | 🟢 OpenCode | 永久保留（SQLite） | 完整 |
 | 🟡 ZCode | 永久保留（SQLite） | 完整 |
@@ -276,7 +282,9 @@ LLM-Usage-Collector/
 │   ├── ⚫ codex.py      # Codex 采集器
 │   ├── 🔴 mimo.py       # MiMo Desktop 采集器
 │   ├── 🐳 dsh.py        # DSH（DeepSeek Harness）采集器
-│   └── 🟦 copilot.py    # GitHub Copilot CLI 采集器
+│   ├── 🟦 copilot.py    # GitHub Copilot CLI 采集器
+│   ├── 🍍 omp.py        # Oh My Pi (omp) 采集器
+│   └── 🔶 qoder.py      # Qoder（阿里）采集器
 ├── 🧩 aggregator.py     # 聚合引擎
 └── 🎨 display.py        # Rich 终端报表
 ```
