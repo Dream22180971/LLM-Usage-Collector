@@ -15,7 +15,7 @@
 
 ---
 
-## 为什么做
+## 💡 为什么做
 
 同时使用多个 AI Coding Agent 后，用量数据会散落在 JSONL、SQLite 和不同工具自己的本地目录里。
 
@@ -25,7 +25,7 @@
 
 ---
 
-## 演示
+## 🎬 演示
 
 ```text
 ┌──────────────────┐  ┌──────────────────┐
@@ -43,7 +43,7 @@
 
 ---
 
-## 5 分钟快速开始
+## ⚡ 5 分钟快速开始
 
 ```bash
 git clone https://github.com/Dream22180971/LLM-Usage-Collector.git
@@ -66,7 +66,7 @@ python main.py --json > usage_report.json
 
 ---
 
-## 支持的 Agent
+## 🤖 支持的 Agent
 
 | Agent | 数据源 | 采集内容 |
 |---|---|---|
@@ -100,7 +100,7 @@ python main.py --json > usage_report.json
 
 ---
 
-## 你会看到什么
+## 📊 你会看到什么
 
 | 视图 | 用途 |
 |---|---|
@@ -112,7 +112,7 @@ python main.py --json > usage_report.json
 
 ---
 
-## 架构
+## 🧩 架构
 
 ```mermaid
 flowchart LR
@@ -133,7 +133,7 @@ flowchart LR
 
 ---
 
-## 扩展新 Agent
+## 🧱 扩展新 Agent
 
 ```python
 from .base import UsageRecord
@@ -157,7 +157,7 @@ class NewAgentCollector:
 
 ---
 
-## 隐私与本地优先
+## 🔐 隐私与本地优先
 
 - 只读取本机 Agent 数据。
 - 不需要注册账号。
@@ -167,7 +167,7 @@ class NewAgentCollector:
 
 ---
 
-## 项目结构
+## 🗂 项目结构
 
 ```text
 LLM-Usage-Collector/
@@ -189,7 +189,7 @@ LLM-Usage-Collector/
 
 ---
 
-## 路线图
+## 🗺 路线图
 
 - [x] 多 Agent 本地采集
 - [x] Agent / 模型 / 日期聚合
@@ -204,7 +204,7 @@ LLM-Usage-Collector/
 
 ---
 
-## 参与贡献
+## 🤝 参与贡献
 
 尤其欢迎：
 
