@@ -1,3 +1,36 @@
+One local dashboard for usage, tokens, models and cost across your AI coding agents. / 一张本地仪表盘，汇总多个 AI Coding Agent 的 Token、模型、会话和费用。
+
+<!-- README-V2-BILINGUAL -->
+
+# LLM-Usage-Collector
+
+> **EN:** One local dashboard for usage, tokens, models and cost across your AI coding agents.  
+> **中文：** 一张本地仪表盘，汇总多个 AI Coding Agent 的 Token、模型、会话和费用。
+
+## Demo / 演示
+
+A terminal recording GIF should be the next documentation asset; the current output examples remain below. / 建议下一步补终端录屏 GIF，当前输出示例继续保留.
+
+## Quick Start / 5 分钟快速开始
+
+```bash
+git clone https://github.com/Dream22180971/LLM-Usage-Collector.git
+cd LLM-Usage-Collector
+pip install -r requirements.txt
+python main.py
+```
+
+> **EN:** Clone, install, run. Advanced configuration and project-specific details are documented below.  
+> **中文：** 克隆、安装、运行即可开始。高级配置和项目特定说明继续保留在下方。
+
+## Why this project / 为什么做这个项目
+
+**EN:** This project starts from one concrete problem and prioritizes being understandable, runnable and useful before becoming complex.
+
+**中文：** 这个项目从一个明确问题出发，优先做到易理解、能运行、真正有用，再逐步增加复杂能力。
+
+---
+
 # 📊 LLM Usage Collector
 
 > 🧮 **把散落在 11 个 AI Agent 里的 Token 账单，收成一张终端仪表盘**
