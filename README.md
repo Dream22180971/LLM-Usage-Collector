@@ -4,34 +4,30 @@
 
 # LLM Usage Collector
 
-**One local dashboard for usage, tokens, models and cost across your AI coding agents.**  
-**一张本地仪表盘，汇总多个 AI Coding Agent 的 Token、模型、会话和费用。**
+**One local dashboard for usage, tokens, models and cost across your AI coding agents.**
+
+[English](./README.md) | [简体中文](./README.zh-CN.md)
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Local First](https://img.shields.io/badge/LOCAL--FIRST-111827?style=for-the-badge&logo=databricks&logoColor=22c55e)](#-privacy--local-first--隐私与本地优先)
-[![Agents](https://img.shields.io/badge/AGENTS-11%2B-7C3AED?style=for-the-badge)](#-supported-agents--支持的-agent)
+[![Local First](https://img.shields.io/badge/LOCAL--FIRST-111827?style=for-the-badge&logo=databricks&logoColor=22c55e)](#privacy--local-first)
+[![Agents](https://img.shields.io/badge/AGENTS-11%2B-7C3AED?style=for-the-badge)](#supported-agents)
 [![License](https://img.shields.io/badge/LICENSE-MIT-10B981?style=for-the-badge)](./LICENSE)
 
 </div>
 
 ---
 
-## ✨ Why / 为什么做
+## Why
 
-**EN**  
-AI coding workflows are fragmented. Claude Code, Codex, OpenCode, Copilot CLI, Qoder and other agents all keep usage data in different places and formats. LLM Usage Collector reads those local records and turns them into one consistent report.
+If you use several AI coding agents, usage data quickly becomes fragmented across JSONL files, SQLite databases and tool-specific directories.
 
-**中文**  
-AI Coding 工具越来越多，但 Token、模型、会话和费用数据散落在不同的 JSONL、SQLite 和本地目录里。LLM Usage Collector 做的事情很简单：**统一采集，统一统计，统一展示。**
+**LLM Usage Collector scans those local records and turns them into one consistent terminal report.**
 
-> **No cloud account. No tracking. No manual export.**  
-> **不需要云端账号，不上传数据，也不用手工整理账单。**
+> No cloud account. No telemetry. No manual spreadsheet.
 
 ---
 
-## 🎬 Demo / 演示
-
-<div align="center">
+## Demo
 
 ```text
 ┌──────────────────┐  ┌──────────────────┐
@@ -45,14 +41,11 @@ AI Coding 工具越来越多，但 Token、模型、会话和费用数据散落�
 └──────────────────┘  └──────────────────┘
 ```
 
-</div>
-
-> A short terminal GIF will replace this static preview later.  
-> 后续会补一段终端录屏 GIF；当前先保留真实输出结构。
+> Next documentation asset: a short terminal GIF showing auto-detection, filtering and JSON export.
 
 ---
 
-## ⚡ Quick Start / 5 分钟快速开始
+## Quick Start
 
 ```bash
 git clone https://github.com/Dream22180971/LLM-Usage-Collector.git
@@ -62,11 +55,9 @@ pip install -r requirements.txt
 python main.py
 ```
 
-That is enough for the first run. The collector automatically scans supported local agent data.
+The first run automatically scans supported local agent data.
 
-第一次运行不需要额外配置。程序会自动扫描本机已支持的 Agent 数据目录。
-
-### Useful commands / 常用命令
+Useful commands:
 
 ```bash
 python main.py --agent claude
@@ -77,9 +68,9 @@ python main.py --json > usage_report.json
 
 ---
 
-## 🤖 Supported Agents / 支持的 Agent
+## Supported Agents
 
-| Agent | Source / 数据源 | What is collected / 采集内容 |
+| Agent | Source | Collected data |
 |---|---|---|
 | Claude Code | JSONL | tokens · sessions · models |
 | Codex | JSONL | tokens · sessions · models |
@@ -88,15 +79,15 @@ python main.py --json > usage_report.json
 | Qoder | JSONL | requests · available token data |
 | Hermes Desktop / CLI | SQLite | usage · estimated cost |
 | ZCode | SQLite | usage · sessions |
-| Pi Agent | JSONL | usage · exact local cost |
+| Pi Agent | JSONL | usage · local cost |
 | Oh My Pi | JSONL | usage · cost |
 | MiMo Desktop | SQLite | usage · sessions |
 | DeepSeek Harness | JSON / zstd | usage · sessions |
 
 <details>
-<summary><strong>Show local storage paths / 查看本地数据路径</strong></summary>
+<summary><strong>Show default local paths</strong></summary>
 
-| Agent | Default path / 默认路径 |
+| Agent | Default path |
 |---|---|
 | Claude Code | `~/.claude/projects/**/*.jsonl` |
 | Codex | `~/.codex/sessions/**/rollout-*.jsonl` |
@@ -111,17 +102,17 @@ python main.py --json > usage_report.json
 
 ---
 
-## 📊 What you get / 你会看到什么
+## What you get
 
-| View | EN | 中文 |
-|---|---|---|
-| **Overview** | total tokens, requests, sessions, cost | 总 Token、请求数、会话数、费用 |
-| **By Agent** | compare agent-level usage | 对比不同 Agent 使用量 |
-| **By Model** | see which models consume the most | 查看模型消耗分布 |
-| **Daily Trend** | usage over recent days | 最近 N 天趋势 |
-| **JSON Output** | feed data into other tools | 输出 JSON 接入其他系统 |
+| View | Purpose |
+|---|---|
+| **Overview** | total tokens, requests, sessions and recorded cost |
+| **By Agent** | compare usage across coding agents |
+| **By Model** | see which models consume the most |
+| **Daily Trend** | inspect recent usage over time |
+| **JSON Output** | feed normalized data into scripts or dashboards |
 
-### Example JSON / JSON 输出
+Example JSON:
 
 ```json
 {
@@ -139,7 +130,7 @@ python main.py --json > usage_report.json
 
 ---
 
-## 🧩 Architecture / 架构
+## Architecture
 
 ```mermaid
 flowchart LR
@@ -153,16 +144,14 @@ flowchart LR
     U --> G[Aggregator]
     G --> T[Rich Terminal UI]
     G --> J[JSON Export]
-    J --> X[Grafana / Scripts / Your Dashboard]
+    J --> X[Scripts / Dashboards]
 ```
 
-Each collector converts its source into one shared `UsageRecord` model. New agents can be added without rewriting the reporting layer.
-
-每个采集器只负责把自己的数据源转成统一的 `UsageRecord`。因此新增 Agent 时，不需要重写聚合和展示逻辑。
+Each collector converts a tool-specific local format into a shared `UsageRecord`. The reporting layer stays unchanged when a new agent collector is added.
 
 ---
 
-## 🧱 Add a new Agent / 扩展新 Agent
+## Add a new Agent
 
 ```python
 from .base import UsageRecord
@@ -182,29 +171,21 @@ class NewAgentCollector:
         ]
 ```
 
-Then register it in the collector registry and main entry.
-
-然后在采集器注册处与入口文件中注册即可。
+Then register the collector in the project entry points.
 
 ---
 
-## 🔐 Privacy & Local-first / 隐私与本地优先
+## Privacy & Local-first
 
-- Data is read from your local machine only.
+- Reads local agent data only.
 - No account system.
 - No telemetry server.
-- No usage data is uploaded by this project.
-- JSON export is opt-in and stays local unless you move it elsewhere.
-
-- 只读取本机数据。
-- 不需要注册账号。
-- 不接遥测服务器。
-- 项目本身不会上传你的 AI 使用数据。
-- JSON 导出由你主动执行，文件默认留在本地。
+- This project does not upload usage data.
+- JSON export is explicit and stays local unless you move it elsewhere.
 
 ---
 
-## 🗂 Project Structure / 项目结构
+## Project Structure
 
 ```text
 LLM-Usage-Collector/
@@ -226,9 +207,9 @@ LLM-Usage-Collector/
 
 ---
 
-## 🗺 Roadmap / 路线图
+## Roadmap
 
-- [x] Multi-agent local collectors / 多 Agent 本地采集
+- [x] Multi-agent local collectors
 - [x] Agent / model / daily aggregation
 - [x] JSON export
 - [x] Cross-platform local paths
@@ -241,27 +222,24 @@ LLM-Usage-Collector/
 
 ---
 
-## 🤝 Contributing / 贡献
+## Contributing
 
-PRs are welcome, especially for:
+PRs are especially useful for:
 
 - new agent collectors
 - path compatibility fixes
 - cost parsing improvements
 - terminal UI improvements
-- real-world test fixtures
-
-尤其欢迎新增 Agent 采集器、兼容路径修复、费用解析、终端 UI 和真实数据格式适配。
+- real-world format fixtures
 
 ---
 
-## 📄 License
+## License
 
 [MIT](./LICENSE)
 
 <div align="center">
 
-**Your AI coding stack is fragmented. Your usage data does not have to be.**  
-**AI Coding 工具可以很多，账单只需要一张。**
+**Your AI coding stack is fragmented. Your usage data does not have to be.**
 
 </div>
