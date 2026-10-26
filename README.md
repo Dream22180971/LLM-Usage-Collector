@@ -2,30 +2,30 @@
 
 # LLM Usage Collector
 
-**One local dashboard for usage, tokens, models and cost across your AI coding agents.**
+**一张本地仪表盘，汇总多个 AI Coding Agent 的 Token、模型、会话和费用。**
 
-[English](./README.md) | [简体中文](./README.zh-CN.md)
+[简体中文](./README.md) | [English](./README.en.md)
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Local First](https://img.shields.io/badge/LOCAL--FIRST-111827?style=for-the-badge&logo=databricks&logoColor=22c55e)](#privacy--local-first)
-[![Agents](https://img.shields.io/badge/AGENTS-11%2B-7C3AED?style=for-the-badge)](#supported-agents)
+[![Local First](https://img.shields.io/badge/LOCAL--FIRST-111827?style=for-the-badge&logo=databricks&logoColor=22c55e)](#隐私与本地优先)
+[![Agents](https://img.shields.io/badge/AGENTS-11%2B-7C3AED?style=for-the-badge)](#支持的-agent)
 [![License](https://img.shields.io/badge/LICENSE-MIT-10B981?style=for-the-badge)](./LICENSE)
 
 </div>
 
 ---
 
-## 💡 Why
+## 💡 为什么做
 
-If you use several AI coding agents, usage data quickly becomes fragmented across JSONL files, SQLite databases and tool-specific directories.
+同时使用多个 AI Coding Agent 后，用量数据会散落在 JSONL、SQLite 和不同工具自己的本地目录里。
 
-**LLM Usage Collector scans those local records and turns them into one consistent terminal report.**
+**LLM Usage Collector 自动扫描这些本地记录，把它们统一成一张终端报表。**
 
-> No cloud account. No telemetry. No manual spreadsheet.
+> 不需要云端账号，不接遥测，也不用手工整理 Excel。
 
 ---
 
-## 🎬 Demo
+## 🎬 演示
 
 ```text
 ┌──────────────────┐  ┌──────────────────┐
@@ -39,11 +39,11 @@ If you use several AI coding agents, usage data quickly becomes fragmented acros
 └──────────────────┘  └──────────────────┘
 ```
 
-> Next documentation asset: a short terminal GIF showing auto-detection, filtering and JSON export.
+> 下一步文档素材：补一段终端 GIF，展示自动识别 Agent、筛选和 JSON 导出。
 
 ---
 
-## ⚡ Quick Start
+## ⚡ 5 分钟快速开始
 
 ```bash
 git clone https://github.com/Dream22180971/LLM-Usage-Collector.git
@@ -53,9 +53,9 @@ pip install -r requirements.txt
 python main.py
 ```
 
-The first run automatically scans supported local agent data.
+第一次运行会自动扫描本机已经支持的 Agent 数据。
 
-Useful commands:
+常用命令：
 
 ```bash
 python main.py --agent claude
@@ -66,26 +66,26 @@ python main.py --json > usage_report.json
 
 ---
 
-## 🤖 Supported Agents
+## 🤖 支持的 Agent
 
-| Agent | Source | Collected data |
+| Agent | 数据源 | 采集内容 |
 |---|---|---|
-| Claude Code | JSONL | tokens · sessions · models |
-| Codex | JSONL | tokens · sessions · models |
-| OpenCode | SQLite | usage · cost · sessions |
-| GitHub Copilot CLI | JSONL | requests · usage |
-| Qoder | JSONL | requests · available token data |
-| Hermes Desktop / CLI | SQLite | usage · estimated cost |
-| ZCode | SQLite | usage · sessions |
-| Pi Agent | JSONL | usage · local cost |
-| Oh My Pi | JSONL | usage · cost |
-| MiMo Desktop | SQLite | usage · sessions |
-| DeepSeek Harness | JSON / zstd | usage · sessions |
+| Claude Code | JSONL | Token · 会话 · 模型 |
+| Codex | JSONL | Token · 会话 · 模型 |
+| OpenCode | SQLite | 用量 · 费用 · 会话 |
+| GitHub Copilot CLI | JSONL | 请求 · 用量 |
+| Qoder | JSONL | 请求 · 可获得的 Token 数据 |
+| Hermes Desktop / CLI | SQLite | 用量 · 估算费用 |
+| ZCode | SQLite | 用量 · 会话 |
+| Pi Agent | JSONL | 用量 · 本地费用 |
+| Oh My Pi | JSONL | 用量 · 费用 |
+| MiMo Desktop | SQLite | 用量 · 会话 |
+| DeepSeek Harness | JSON / zstd | 用量 · 会话 |
 
 <details>
-<summary><strong>Show default local paths</strong></summary>
+<summary><strong>查看默认本地路径</strong></summary>
 
-| Agent | Default path |
+| Agent | 默认路径 |
 |---|---|
 | Claude Code | `~/.claude/projects/**/*.jsonl` |
 | Codex | `~/.codex/sessions/**/rollout-*.jsonl` |
@@ -100,35 +100,19 @@ python main.py --json > usage_report.json
 
 ---
 
-## 📊 What you get
+## 📊 你会看到什么
 
-| View | Purpose |
+| 视图 | 用途 |
 |---|---|
-| **Overview** | total tokens, requests, sessions and recorded cost |
-| **By Agent** | compare usage across coding agents |
-| **By Model** | see which models consume the most |
-| **Daily Trend** | inspect recent usage over time |
-| **JSON Output** | feed normalized data into scripts or dashboards |
-
-Example JSON:
-
-```json
-{
-  "totals": {
-    "total_input": 487512098,
-    "total_output": 7714591,
-    "total_cache_read": 1275984237,
-    "total_tokens": 1772918099,
-    "total_cost": 16.98,
-    "total_requests": 4062,
-    "unique_sessions": 295
-  }
-}
-```
+| **Overview** | 总 Token、请求数、会话数和已记录费用 |
+| **By Agent** | 对比不同 Agent 的使用量 |
+| **By Model** | 查看不同模型的消耗分布 |
+| **Daily Trend** | 查看最近一段时间的使用趋势 |
+| **JSON Output** | 把标准化数据接入脚本或自己的仪表盘 |
 
 ---
 
-## 🧩 Architecture
+## 🧩 架构
 
 ```mermaid
 flowchart LR
@@ -145,11 +129,11 @@ flowchart LR
     J --> X[Scripts / Dashboards]
 ```
 
-Each collector converts a tool-specific local format into a shared `UsageRecord`. The reporting layer stays unchanged when a new agent collector is added.
+每个采集器只负责把工具自己的本地格式转成统一的 `UsageRecord`，新增 Agent 时不用重写聚合与展示层。
 
 ---
 
-## 🧱 Add a new Agent
+## 🧱 扩展新 Agent
 
 ```python
 from .base import UsageRecord
@@ -169,21 +153,21 @@ class NewAgentCollector:
         ]
 ```
 
-Then register the collector in the project entry points.
+完成后把采集器注册到项目入口即可。
 
 ---
 
-## 🔐 Privacy & Local-first
+## 🔐 隐私与本地优先
 
-- Reads local agent data only.
-- No account system.
-- No telemetry server.
-- This project does not upload usage data.
-- JSON export is explicit and stays local unless you move it elsewhere.
+- 只读取本机 Agent 数据。
+- 不需要注册账号。
+- 不接遥测服务器。
+- 项目本身不会上传使用数据。
+- JSON 导出由你主动执行，默认留在本地。
 
 ---
 
-## 🗂 Project Structure
+## 🗂 项目结构
 
 ```text
 LLM-Usage-Collector/
@@ -205,30 +189,30 @@ LLM-Usage-Collector/
 
 ---
 
-## 🗺 Roadmap
+## 🗺 路线图
 
-- [x] Multi-agent local collectors
-- [x] Agent / model / daily aggregation
-- [x] JSON export
-- [x] Cross-platform local paths
-- [ ] Terminal demo GIF
-- [ ] Interactive TUI
-- [ ] Cost normalization across providers
-- [ ] Pluggable collector interface
-- [ ] Optional desktop dashboard
-- [ ] Historical snapshots & comparisons
+- [x] 多 Agent 本地采集
+- [x] Agent / 模型 / 日期聚合
+- [x] JSON 导出
+- [x] 多平台本地路径兼容
+- [ ] 终端演示 GIF
+- [ ] 交互式 TUI
+- [ ] 跨供应商费用标准化
+- [ ] 可插拔采集器接口
+- [ ] 可选桌面仪表盘
+- [ ] 历史快照与对比
 
 ---
 
-## 🤝 Contributing
+## 🤝 参与贡献
 
-PRs are especially useful for:
+尤其欢迎：
 
-- new agent collectors
-- path compatibility fixes
-- cost parsing improvements
-- terminal UI improvements
-- real-world format fixtures
+- 新 Agent 采集器
+- 本地路径兼容修复
+- 费用解析增强
+- 终端 UI 改进
+- 真实数据格式测试样本
 
 ---
 
@@ -238,6 +222,6 @@ PRs are especially useful for:
 
 <div align="center">
 
-**Your AI coding stack is fragmented. Your usage data does not have to be.**
+**AI Coding 工具可以很多，账单只需要一张。**
 
 </div>
